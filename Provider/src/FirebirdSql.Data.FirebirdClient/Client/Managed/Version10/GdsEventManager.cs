@@ -48,6 +48,7 @@ namespace FirebirdSql.Data.Client.Managed.Version10
 
 		public async Task WaitForEventsAsync(RemoteEvent remoteEvent)
 		{
+#warning Dictionary not needed? Just pass value. No GdsEventManager sharing.
 			_events.AddOrUpdate(remoteEvent.LocalId, remoteEvent, (_, __) => remoteEvent);
 			try
 			{
@@ -81,10 +82,13 @@ namespace FirebirdSql.Data.Client.Managed.Version10
 					}
 				}
 			}
-#warning What do to here with other exceptions?
 			catch (IOException ex) when (IsEventsReturnSocketError((ex.InnerException as SocketException)?.SocketErrorCode))
 			{
 				return;
+			}
+			catch (Exception ex)
+			{
+				remoteEvent.EventErrorCallback?.Invoke(ex);
 			}
 		}
 
