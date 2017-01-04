@@ -35,3 +35,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("FirebirdClient - ADO.NET Data Provider")]
 [assembly: AssemblyVersion(FirebirdSql.Data.FirebirdClient.Properties.VersionInfo.Version)]
 [assembly: AssemblyFileVersion(FirebirdSql.Data.FirebirdClient.Properties.VersionInfo.Version)]
+[assembly: AssemblyInformationalVersion(FirebirdSql.Data.FirebirdClient.Properties.VersionInfo.Version)]
