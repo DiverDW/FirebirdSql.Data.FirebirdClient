@@ -58,7 +58,7 @@
 			}
 		},
 		"publicSign": true,
-		"keyFile": "Properties\\FirebirdSql.Data.FirebirdClient.snk",
+		"keyFile": "Properties/FirebirdSql.Data.FirebirdClient.snk",
 		"allowUnsafe": true
 	}
 }
