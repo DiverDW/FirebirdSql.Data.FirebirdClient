@@ -32,7 +32,7 @@ using FirebirdSql.Data.Common;
 
 namespace FirebirdSql.Data.Client.Managed.Version10
 {
-	internal class GdsEventManager
+	internal class GdsEventManager : IDisposable
 	{
 		private int _handle;
 		private GdsDatabase _database;
@@ -59,7 +59,7 @@ namespace FirebirdSql.Data.Client.Managed.Version10
 
 					case IscCodes.op_exit:
 					case IscCodes.op_disconnect:
-						Close();
+						Dispose();
 						break;
 
 					case IscCodes.op_event:
@@ -85,7 +85,7 @@ namespace FirebirdSql.Data.Client.Managed.Version10
 			}
 		}
 
-		public void Close()
+		public void Dispose()
 		{
 			_database.CloseConnection();
 		}
