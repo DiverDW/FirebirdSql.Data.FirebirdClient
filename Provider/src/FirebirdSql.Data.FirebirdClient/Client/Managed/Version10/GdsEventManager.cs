@@ -53,15 +53,6 @@ namespace FirebirdSql.Data.Client.Managed.Version10
 
 				switch (operation)
 				{
-					case IscCodes.op_response:
-						_database.ReadResponse();
-						break;
-
-					case IscCodes.op_exit:
-					case IscCodes.op_disconnect:
-						Dispose();
-						break;
-
 					case IscCodes.op_event:
 						var dbHandle = _database.XdrStream.ReadInt32();
 						var buffer = _database.XdrStream.ReadBuffer();
@@ -72,6 +63,10 @@ namespace FirebirdSql.Data.Client.Managed.Version10
 
 						remoteEvent.EventCounts(buffer);
 
+						break;
+
+					default:
+						Debug.Assert(false);
 						break;
 				}
 			}
